@@ -4,20 +4,26 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
-  styles: []
+  styles: [`
+
+    .ng-invalid.ng-touched:not(form){
+      border:solid 1px red;
+    }
+
+    `]
 })
 export class TemplateComponent  {
 
   usuario:Object = {
-    nombre: "Arturo",
-    apellido: "Espinosa",
-    email: "prueba@gmail.com"
+    nombre: null,
+    apellido: null,
+    email:null
   }
 
   constructor() { }
 
   guardar( forma:NgForm ){
-    console.log( this.usuario );
+    console.log( forma );
   }
 
 }
