@@ -1,6 +1,6 @@
-<h4>Formulario <small>validacion</small></h4>
+<h4>Formulario <small> Aproximación por template </small></h4>
 <hr>
-<form>
+<form (ngSubmit)="guardar(forma)" #forma="ngForm" novalidate>
 
   <div>
 
@@ -10,6 +10,8 @@
 
         <input class="form-control"
                type="text"
+               name="nombre"
+               [(ngModel)]="usuario.nombre"
                placeholder="Nombre">
       </div>
     </div>
@@ -20,6 +22,8 @@
 
         <input class="form-control"
                type="text"
+               name="apellido"
+               [(ngModel)]="usuario.apellido"
                placeholder="Apellido">
       </div>
     </div>
@@ -32,6 +36,8 @@
 
       <input class="form-control"
              type="email"
+             name="email"
+             [(ngModel)]="usuario.email"
              placeholder="Correo electrónico">
     </div>
   </div>
