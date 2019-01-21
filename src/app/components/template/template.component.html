@@ -54,10 +54,14 @@
              [(ngModel)]="usuario.email"
              placeholder="Correo electrónico"
              #email="ngModel"
+             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
              required>
 
       <div *ngIf="email.errors?.required">
         Este campo es requerido
+      </div>
+      <div *ngIf="email.errors?.pattern">
+        Este campo no tiene el formato correcto de correo
       </div>
 
     </div>
