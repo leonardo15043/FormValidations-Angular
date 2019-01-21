@@ -67,12 +67,50 @@
     </div>
   </div>
 
+  <div class="form-group row">
+    <label class="col-2 col-form-label">País</label>
+    <div class="col-md-8">
+
+    <select [(ngModel)]="usuario.pais" class="form-control" name="pais">
+      <option value="">Seleccione pais</option>
+      <option [value]="pais.codigo" *ngFor="let pais of paises">
+        {{ pais.pais}}
+      </option>
+    </select>
+
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Sexo</label>
+    <div class="col-md-8">
+
+      <div class="custom-control custom-radio" *ngFor="let item of sexos; let i = index">
+        <input type="radio" [(ngModel)]="usuario.sexo" [value]="item" class="custom-control-input" id="customControlValidation{{ i }}" name="sexo" required>
+        <label class="custom-control-label" for="customControlValidation{{ i }}">{{ item }}</label>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Terminos y condiciones</label>
+    <div class="col-md-8">
+
+      <div class="custom-control custom-checkbox mb-3">
+         <input type="checkbox" [(ngModel)]="usuario.acepta" name="acepta" class="custom-control-input" id="customControlValidation3" required>
+         <label class="custom-control-label" for="customControlValidation3">Aceptar terminos y condiciones</label>
+         <div class="invalid-feedback">Example invalid feedback text</div>
+      </div>
+
+    </div>
+  </div>
 
 
   <div class="form-group row">
     <label class="col-2 col-form-label">&nbsp;</label>
     <div class="input-group col-md-8">
-      <button type="submit" class="btn btn-outline-primary">
+      <button type="submit" class="btn btn-outline-primary" [disabled]="!forma.valid">
         Guardar
       </button>
     </div>
