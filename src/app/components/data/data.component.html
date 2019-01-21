@@ -2,29 +2,34 @@
 <hr>
 <form [formGroup]="forma" (ngSubmit)="guardarCambios()" class="needs-validation" novalidate>
 
-  <div class="form-row col-md-4 mb-3">
+    <div formGroupName="nombrecompleto" class="form-row col-md-4 ">
 
-    <div class="col-md-12 m-1">
-       <input type="text" class="form-control" [ngClass]="{ 'is-invalid' : !forma.controls['nombre'].valid && forma.touched }" id="validationServer01" placeholder="Nombre" formControlName="nombre">
-       <div class="invalid-feedback" *ngIf="!forma.controls['nombre'].errors?.minLength">
-         El nombre debe tener como minimo 4 caracteres
-       </div>
+      <div class="col-md-12 m-1">
+         <input type="text" class="form-control" [ngClass]="{ 'is-invalid' : !forma.controls['nombrecompleto'].controls['nombre'].valid && forma.touched }" id="validationServer01" placeholder="Nombre" formControlName="nombre">
+         <div class="invalid-feedback" *ngIf="!forma.controls['nombrecompleto'].controls['nombre'].errors?.minLength">
+           El nombre debe tener como minimo 4 caracteres
+         </div>
+      </div>
+
+      <div class="col-md-12 m-1">
+         <input type="text" class="form-control" [ngClass]="{ 'is-invalid' : !forma.controls['nombrecompleto'].controls['apellido'].valid && forma.touched }" id="validationServer01" placeholder="Apellido" formControlName="apellido">
+      </div>
+
     </div>
 
-    <div class="col-md-12 m-1">
-       <input type="text" class="form-control" [ngClass]="{ 'is-invalid' : !forma.controls['apellido'].valid && forma.touched }" id="validationServer01" placeholder="Apellido" formControlName="apellido">
-    </div>
+    <div class="form-row col-md-4 ">
 
-    <div class="col-md-12 m-1">
-       <input type="email" class="form-control" [ngClass]="{ 'is-invalid' : !forma.controls['correo'].valid && forma.touched }" id="validationServer01" placeholder="Correo" formControlName="correo">
-       <div class="invalid-feedback" *ngIf="forma.controls['correo'].errors?.pattern">
-         El formato no es correcto
-       </div>
+      <div class="col-md-12 m-1">
+         <input type="email" class="form-control" [ngClass]="{ 'is-invalid' : !forma.controls['correo'].valid && forma.touched }" id="validationServer01" placeholder="Correo" formControlName="correo">
+         <div class="invalid-feedback" *ngIf="forma.controls['correo'].errors?.pattern">
+           El formato no es correcto
+         </div>
+      </div>
+      
     </div>
 
     <div class="col-md-12 m-1">
       <button type="submit" class="btn btn-outline-primary" [disabled]="!forma.valid">Guardar</button>
     </div>
-  </div>
 
 </form>
