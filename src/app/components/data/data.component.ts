@@ -21,20 +21,41 @@ export class DataComponent  {
       'correo': new FormControl('', [ Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$") ] ),
       'pasatiempos': new FormArray([
         new FormControl('', Validators.required )
-      ])
+      ]),
+      'password1': new FormControl('', [ Validators.required , Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]{2})[a-zA-Z0-9]{8,15}") ] ),
+      'password2': new FormControl()
     })
+
+    this.forma.controls['password2'].setValidators([
+      Validators.required,
+      this.noIgual.bind( this.forma )
+    ])
 
   }
 
   guardarCambios(){
     console.log(this.forma);
-    this.forma.reset();
+  //  this.forma.reset();
   }
 
   agregarPasatiempo(){
     (<FormArray>this.forma.controls['pasatiempos']).push(
       new FormControl('', Validators.required)
     )
+  }
+
+  noIgual( control: FormControl ):{ [s:string]:boolean }{
+
+     let forma:any = this;
+
+    if( control.value !== forma.controls['password1'].value ){
+      return {
+        noiguale:true
+      }
+    }else{
+      return null;
+    }
+
   }
 
 
