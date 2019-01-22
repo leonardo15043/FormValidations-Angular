@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl , Validators , FormArray} from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-data',
@@ -14,6 +15,7 @@ export class DataComponent  {
 
     this.forma = new FormGroup({
 
+      'username': new FormControl('', Validators.required, this.existeUsuario ),
       'nombrecompleto': new FormGroup({
         'nombre': new FormControl('',  [ Validators.required , Validators.minLength(4) ] ),
         'apellido': new FormControl('', Validators.required),
@@ -35,7 +37,7 @@ export class DataComponent  {
 
   guardarCambios(){
     console.log(this.forma);
-  //  this.forma.reset();
+    this.forma.reset();
   }
 
   agregarPasatiempo(){
@@ -55,6 +57,25 @@ export class DataComponent  {
     }else{
       return null;
     }
+
+  }
+
+  existeUsuario( control: FormControl ): Promise<any>|Observable<any>{
+
+    let promesa = new Promise(
+
+      ( resolve, reject )=>{
+        setTimeout( ()=>{
+          if( control.value === "strider"){
+            resolve( { existe:true } )
+          }else{
+            resolve( null )
+          }
+
+        },1000 )
+      }
+    )
+    return promesa;
 
   }
 

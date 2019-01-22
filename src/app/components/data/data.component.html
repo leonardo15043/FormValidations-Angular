@@ -2,6 +2,17 @@
 <hr>
 <form [formGroup]="forma" (ngSubmit)="guardarCambios()" class="needs-validation" novalidate>
 
+    <div class="form-row col-md-4 ">
+
+      <div class="col-md-12 m-1">
+         <input type="text" class="form-control" [ngClass]="{ 'is-invalid' : forma.controls['username'].errors?.existe && forma.controls['username'].touched }" placeholder="Usuario" formControlName="username">
+         <div class="invalid-feedback" *ngIf="forma.controls['username'].errors?.existe">
+           Este usuario ya existe
+         </div>
+      </div>
+
+    </div>
+
     <div formGroupName="nombrecompleto" class="form-row col-md-4 ">
 
       <div class="col-md-12 m-1">
@@ -75,3 +86,7 @@
     </div>
 
 </form>
+<br>
+{{ forma.valid }}
+<br>
+{{ forma.status }}
