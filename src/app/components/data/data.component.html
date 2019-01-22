@@ -25,7 +25,22 @@
            El formato no es correcto
          </div>
       </div>
+
+    </div>
+
+    <div class="form-row col-md-4 ">
+
+      <div class="col-md-8 m-1" formArrayName="pasatiempos">
+         <input *ngFor="let item of forma.controls['pasatiempos'].controls; let i = index"
+                [ngClass]="{ 'is-invalid' : !forma.controls['pasatiempos'].controls[i].valid && forma.touched }"
+                [formControlName]="i"
+                type="text" class="form-control mb-2"  placeholder="Pasatiempo" >
+      </div>
       
+      <div class="col-md-3 m-1">
+         <div class="btn btn-outline-primary" (click)="agregarPasatiempo()">Agregar</div>
+      </div>
+
     </div>
 
     <div class="col-md-12 m-1">
